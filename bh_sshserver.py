@@ -56,13 +56,14 @@ try:
                 else:
                     chan.send("exit")
                     print "exiting..."
-                    bhSession.close();
-                    raise Exception("exit")
-            except Exception, e:
-                print "[-] Caught exception: " + str(e)
-                try:
                     bhSession.close()
-                except:
-                    pass
-                sys.exit(1)
-
+                    raise Exception("exit")
+            except KeyboardInterrupt:
+                bhSession.close()
+except Exception, e:
+    print "[-] Caught exception: " + str(e)
+    try:
+        bhSession.close()
+    except:
+        pass
+    sys.exit(1)
